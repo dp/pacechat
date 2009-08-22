@@ -1,0 +1,25 @@
+root { 
+    display: block;
+}
+
+body {
+    background-color: #18110c;
+    font-family: "skia";
+    color: #ffffcc;
+    text-align: center;
+}
+h1 {
+    font-size: 40pt;
+    word-spacing: 150pc;
+    margin-top: 3em;
+}
+
+
+
+form {
+    margin-top: 2em;
+}
+
+input {
+    font-size: 18pt;
+}
