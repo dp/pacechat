@@ -1,4 +1,7 @@
-log
-tmp
-db/*.sqlite3
-db/data.yml
+log/*.log
+tmp/**/*
+doc/api
+doc/app
+nbproject
+nbproject/*
+
