@@ -4,4 +4,5 @@ doc/api
 doc/app
 nbproject
 nbproject/*
+config/database.yml
 
