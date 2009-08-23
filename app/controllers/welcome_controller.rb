@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
 
   def goto_chat
     puts params.inspect
-    redirect_to "/#{params['chat_name']}"
+    redirect_to "/#{params['chat_name'].downcase.gsub(/\W/,'-')}"
   end
 
 end

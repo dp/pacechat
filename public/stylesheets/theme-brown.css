@@ -21,12 +21,13 @@ table {
 }
 
 tr.poster-self {
-    color:#ccc088;
+    color:#aa8055;
 }
 
 td {
     vertical-align: top;
     border-bottom: 6px solid #18110c;
+    border-right: 20px solid #18110c;
 }
 
 td.author {

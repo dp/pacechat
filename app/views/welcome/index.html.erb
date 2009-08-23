@@ -5,17 +5,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <%= stylesheet_link_tag 'reset.css' -%>
     <%= stylesheet_link_tag 'welcome.css' -%>
+    <%= javascript_include_tag 'jquery-1.3.2.min.js' -%>
+    <%= javascript_include_tag 'jquery.watermark-2.0.min.js' -%>
   </head>
 
-  <body>
+  <body onload="$('#chat').watermark('try \'rails rumble\'')">
     <h1>pacechat</h1>
-    <h2>some preamble</h2>
+    <h2>simple disposable chat</h2>
 
     <form action="goto_chat" method="get">
-      <p>start a chat</p>
-      <input type="text" name="chat_name"/>
-      <input type="submit" value="go" />
+      <p>pick a subject to start a chat</p>
+      <input type="text" id="chat" name="chat_name" style="width:20em"/>
+      <input type="submit" value="go" style="display:none"/>
     </form>
+    <p></p>
   </body>
 </html>
 

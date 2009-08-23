@@ -21,14 +21,19 @@ class ChatController < ApplicationController
       :conditions=> ['chat_id= ? AND id > ?',
         @chat.id,
         last_post_id]).map do |post|
+      if post.poster_id==@poster.id
+        post_class="poster-self"
+      else
+        post_class="poster-#{post.poster_id}"
+      end
+      puts post_class
       <<-HTML
-              <tr id="poster-#{post.poster_id}">
+              <tr class="#{post_class}">
                 <td>#{CGI.escapeHTML(post.author)}</td>
                 <td id="post-#{post.id}">#{CGI.escapeHTML(post.msg)}</td>
               </tr>
       HTML
     end.join("\n")
-    puts html
     html
   end
 
@@ -36,8 +41,7 @@ class ChatController < ApplicationController
 
   def get_chat
     @poster ||= Poster.find_or_create_by_ipaddress(request.remote_ip)
-    puts @poster.id
-    @chat ||= Chat.find_or_create_by_url(params['chat_url'])
+    @chat ||= Chat.find_or_create_by_url(params['chat_url'].downcase)
   end
 
 end

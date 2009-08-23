@@ -15,6 +15,14 @@ h1 {
     margin-top: 3em;
 }
 
+h2 {
+    color: #aa8055;
+    font-size: 14pt;
+}
+
+.watermark {
+    color: #bbb;
+}
 
 
 form {
@@ -23,4 +31,5 @@ form {
 
 input {
     font-size: 18pt;
+    text-align: center;
 }
