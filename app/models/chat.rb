@@ -1,8 +1,7 @@
 class Chat < ActiveRecord::Base
-  has_many :posts, :order=> 'created_at DESC'
+  has_many :posts, :order=> 'id DESC'
 
   def add_post author, msg, ipaddress
-    puts "** author:#{author.inspect} msg:#{msg.inspect}"
     unless msg.blank?
       self.posts.create(
         :author=> get_author(author, ipaddress),

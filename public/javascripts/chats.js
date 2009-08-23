@@ -1,10 +1,13 @@
+var submitting= false;
+
 function init(chat_url) {
     $('#post-form').attr("action","javascript:ajax_form_submit('"+chat_url+"')");
-//    $('#submit-button').remove();
+    $('#submit-button').hide(); // FF won't submit if we remove it'
     start_poll_timer(chat_url);
 }
 
 function ajax_form_submit(chat_url) {
+    submitting= true;
     ajax_update(
         chat_url,
         {
@@ -13,12 +16,15 @@ function ajax_form_submit(chat_url) {
             msg: $("#msg").attr("value")
         });
     $("#msg").val("");
+    submitting= false;
 }
 
 function ajax_poll_request(chat_url) {
-    ajax_update(chat_url, {
-        after: last_post_id()
-    });
+    if (!submitting) {
+        ajax_update(chat_url, {
+            after: last_post_id()
+        });
+    }
     start_poll_timer(chat_url)
 }
 
@@ -38,7 +44,7 @@ function ajax_update(chat_url, params) {
 }
 
 function start_poll_timer(chat_url) {
-    setTimeout("ajax_poll_request('"+chat_url+"')", 5000);
+    setTimeout("ajax_poll_request('"+chat_url+"')", 50000);
 }
 
 

@@ -26,6 +26,9 @@
           <td id="post-<%= post.id -%>"><%= h post.msg %></td>
         </tr>
       <% end %>
+      <% if @chat.posts.empty? %>
+        <tr><td></td><td></td></tr>
+      <% end %>
     </table>
   </body>
 </html>
