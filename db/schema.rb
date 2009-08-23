@@ -9,13 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090822063844) do
+ActiveRecord::Schema.define(:version => 20090823072714) do
 
   create_table "chats", :force => true do |t|
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "chats", ["url"], :name => "index_chats_on_url"
 
   create_table "posters", :force => true do |t|
     t.string   "ipaddress"
@@ -31,5 +33,7 @@ ActiveRecord::Schema.define(:version => 20090822063844) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "posts", ["chat_id", "created_at"], :name => "by_chat"
 
 end

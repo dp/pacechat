@@ -1,4 +1,31 @@
-<h1><%= "===" %></h1>
-<%= @x %>
-<%= params.inspect %>
-<p>Find me in app/views/chat/index.html.erb</p>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>pacechat</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <%= stylesheet_link_tag 'reset.css' -%>
+    <%= stylesheet_link_tag 'theme-terminal.css' -%>
+    <%= javascript_include_tag 'jquery-1.3.2.min.js' -%>
+    <%= javascript_include_tag 'chats.js' -%>
+  </head>
+
+  <body onload='init("<%= @chat.url -%>")'>
+    <h1>pacechat</h1>
+
+    <% form_tag @chat.url, :id=>'post-form' do %>
+      <input id="author" type="text" name="author"/>
+      <input id="msg" type="text" name="msg"/>
+      <input type="submit" value="post" id="submit-button"/>
+    <% end %>
+
+    <table id="posts">
+      <% @chat.posts.each do |post| %>
+        <tr id="poster-<%= post.poster_id -%>">
+          <td><%= h post.author %></td>
+          <td id="post-<%= post.id -%>"><%= h post.msg %></td>
+        </tr>
+      <% end %>
+    </table>
+  </body>
+</html>
