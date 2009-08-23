@@ -1,6 +1,6 @@
 function init(chat_url) {
     $('#post-form').attr("action","javascript:ajax_form_submit('"+chat_url+"')");
-    $('#submit-button').remove();
+//    $('#submit-button').remove();
     start_poll_timer(chat_url);
 }
 
