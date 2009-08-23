@@ -5,25 +5,30 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <%= stylesheet_link_tag 'reset.css' -%>
-    <%= stylesheet_link_tag 'theme-terminal.css' -%>
+    <%= stylesheet_link_tag 'theme-brown.css' -%>
     <%= javascript_include_tag 'jquery-1.3.2.min.js' -%>
+    <%= javascript_include_tag 'jquery.watermark-2.0.min.js' -%>
     <%= javascript_include_tag 'chats.js' -%>
   </head>
 
   <body onload='init("<%= @chat.url -%>")'>
     <h1>pacechat</h1>
+    <a id="invite" href=<%=%|"mailto:?subject=Invitation to join out chat&body=join out chat at #{request.url}"|-%>>
+      invite people to join this chat
+    </a>
 
     <% form_tag @chat.url, :id=>'post-form' do %>
-      <input id="author" type="text" name="author"/>
-      <input id="msg" type="text" name="msg"/>
+    <input id="author" type="text" name="author" alt="name"/>
+      <input id="msg" type="text" name="msg" alt="message"/>
       <input type="submit" value="post" id="submit-button"/>
     <% end %>
 
     <table id="posts">
+
       <% @chat.posts.each do |post| %>
-        <tr id="poster-<%= post.poster_id -%>">
-          <td><%= h post.author %></td>
-          <td id="post-<%= post.id -%>"><%= h post.msg %></td>
+        <tr class="poster-<%= post.poster_id==@poster.id ? 'self' : post.poster_id -%>">
+          <td class="author"><%= h post.author %></td>
+          <td class="post" id="post-<%= post.id -%>"><%= h post.msg %></td>
         </tr>
       <% end %>
       <% if @chat.posts.empty? %>

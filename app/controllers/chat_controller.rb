@@ -35,6 +35,8 @@ class ChatController < ApplicationController
   private
 
   def get_chat
+    @poster ||= Poster.find_or_create_by_ipaddress(request.remote_ip)
+    puts @poster.id
     @chat ||= Chat.find_or_create_by_url(params['chat_url'])
   end
 

@@ -3,6 +3,8 @@ var submitting= false;
 function init(chat_url) {
     $('#post-form').attr("action","javascript:ajax_form_submit('"+chat_url+"')");
     $('#submit-button').hide(); // FF won't submit if we remove it'
+    $('#author').watermark('name');
+    $('#msg').watermark('message');
     start_poll_timer(chat_url);
 }
 
@@ -47,4 +49,5 @@ function start_poll_timer(chat_url) {
     setTimeout("ajax_poll_request('"+chat_url+"')", 50000);
 }
 
-
+$('#author').watermark('name');
+$('#msg').watermark('message');
