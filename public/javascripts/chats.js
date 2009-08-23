@@ -46,7 +46,7 @@ function ajax_update(chat_url, params) {
 }
 
 function start_poll_timer(chat_url) {
-    setTimeout("ajax_poll_request('"+chat_url+"')", 50000);
+    setTimeout("ajax_poll_request('"+chat_url+"')", 5000);
 }
 
 $('#author').watermark('name');
