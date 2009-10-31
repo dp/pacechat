@@ -15,12 +15,7 @@ class ChatController < ApplicationController
   def row_html_for_posts_after last_post
     last_post_id= (last_post =~ /post-(\d+)/ ? $1.to_i : 0)
     puts "*** #{last_post_id}"
-    html= Post.find(
-      :all,
-      :order=> 'id DESC',
-      :conditions=> ['chat_id= ? AND id > ?',
-        @chat.id,
-        last_post_id]).map do |post|
+    html= @chat.posts_since(last_post_id).map do |post|
       if post.poster_id==@poster.id
         post_class="poster-self"
       else
