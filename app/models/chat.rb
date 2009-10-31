@@ -1,4 +1,8 @@
 class Chat < ActiveRecord::Base
+  def self.visible_period
+    24.hours.ago
+  end
+
   has_many :posts, 
     :order=> 'id DESC',
     :conditions => ['created_at > ?', visible_period]
@@ -20,7 +24,7 @@ class Chat < ActiveRecord::Base
       :conditions=> ['chat_id= ? AND id > ? and created_at > ?',
         self.id,
         post_id,
-        visible_period])
+        Chat.visible_period])
   end
 
   def get_author author, ipaddress
@@ -30,7 +34,4 @@ class Chat < ActiveRecord::Base
     "anon-#{@poster.id}"
   end
 
-  def visible_period
-    24.hours.ago
-  end
 end
