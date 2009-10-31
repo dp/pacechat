@@ -1,5 +1,7 @@
 class Chat < ActiveRecord::Base
-  has_many :posts, :order=> 'id DESC'
+  has_many :posts, 
+    :order=> 'id DESC',
+    :conditions => ['created_at > ?', 24.hours.ago]
 
   def add_post author, msg, ipaddress
     unless msg.blank?
